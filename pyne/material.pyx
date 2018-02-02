@@ -345,6 +345,17 @@ cdef class _Material:
         cdef std_string card
         card = self.mat_pointer.mcnp(frac_type.encode())
         return card.decode()
+    
+    def scale(self, temp=300):
+        """scale()
+        Return a scale material card
+        Parameters
+        ----------
+ 	   material temperature [K]
+        """
+        cdef std_string card
+        card = self.mat_pointer.scale(temp)
+        return card.decode()
 
     def fluka(self, fid, frac_type='mass'):
         """fluka()
