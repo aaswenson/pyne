@@ -634,17 +634,18 @@ std::string pyne::Material::scale(float temp){
       } else {
           oss << "0 ";
       }
- 
+      
+      float mat_ndens = number_density(density, atoms_per_molecule);
+      // convert to number density for scale
+      float ndens = i->second * std::abs(mat_ndens) / 1e24;
+
       // The int needs a little formatting
-      float ndens = number_density(density, atoms_per_molecule); 
       std::stringstream fs;
-      fs << std::setprecision(4) << std::scientific << 
-         i->second * std::abs(ndens) / 1e24;
+      fs << std::setprecision(4) << std::scientific << ndens;
       oss << fs.str();
       oss << " " << temp << " end" << std::endl;
     }
     
-
   return oss.str();
 }
 
