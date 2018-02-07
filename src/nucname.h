@@ -469,6 +469,10 @@ namespace nucname
   //int serpent_to_id(int nuc);  Should be ZAID
   int serpent_to_id(const char * nuc);
   int serpent_to_id(std::string nuc);
+
+  /// \name Scale Form Functions
+  /// This is the string-based naming convention used by scale6.1
+  std::string scale(int nuc);
   /// \}
 
   /// \name NIST Form Functions

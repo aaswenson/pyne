@@ -586,6 +586,29 @@ def serpent_to_id(nuc):
         raise NucTypeError(nuc)
     return newnuc
 
+def scale(nuc):
+    """Converts a nuclide to its Scale form ('Am-242m').
+
+    Parameters
+    ----------
+    nuc : int or str
+        Input nuclide.
+
+    Returns
+    -------
+    newnuc : str
+        Output nuclide in scale form.
+
+    """
+    cdef std_string newnuc
+
+    if isinstance(nuc, int):
+        newnuc = cpp_nucname.scale(<int> nuc)
+    else:
+        raise NucTypeError(nuc)
+
+    return bytes(<char *> newnuc.c_str()).decode()
+
 
 def nist(nuc):
     """Converts a nuclide to NIST form ('242Am').

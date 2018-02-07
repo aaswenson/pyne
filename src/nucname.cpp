@@ -1102,6 +1102,45 @@ int pyne::nucname::serpent_to_id(std::string nuc) {
   return nucid;
 }
 
+/*************************/
+/**** scale function ****/
+/*************************/
+std::string pyne::nucname::scale(int nuc) {
+  int nucid = id(nuc);
+  std::string newnuc = "";
+
+  int ssss = nucid % 10000;
+  int aaassss = nucid % 10000000;
+  int zzz = nucid / 10000000;
+  int aaa = aaassss / 10000;
+
+  // Make sure the LL value is correct
+  if (0 == zz_name.count(zzz))
+    throw NotANuclide(nuc, nucid);
+
+  // Add LL
+  std::string llupper = pyne::to_upper(zz_name[zzz]);
+  std::string lllower = pyne::to_lower(zz_name[zzz]);
+  newnuc += llupper[0];
+  for (int l = 1; l < lllower.size(); l++)
+    newnuc += lllower[l];
+    
+  // Add A-number
+  if (0 < aaassss){
+    newnuc += "-";
+    // Add required dash
+    newnuc += pyne::to_str(aaa);
+  } else {
+    newnuc += " ";
+  }
+
+  // Add meta-stable flag
+  if (0 < ssss)
+    newnuc += "m";
+
+  return newnuc;
+}
+
 
 /**********************/
 /*** nist functions ***/

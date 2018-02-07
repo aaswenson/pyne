@@ -616,7 +616,7 @@ std::string pyne::Material::scale(float temp){
   std::string table_item;
   for(pyne::comp_iter i = fracs.begin(); i != fracs.end(); ++i) {
     if (i->second > 0.0) {
-      oss << pyne::nucname::name(i->first) << " ";
+      oss << pyne::nucname::scale(i->first) << " ";
       }
 
       // add material number from metadata

@@ -102,6 +102,9 @@ cdef extern from "nucname.h" namespace "pyne::nucname":
     int serpent_to_id(char *) except +
     int serpent_to_id(std_string) except +
 
+    # Scale Functions
+    std_string scale(int) except +
+    
     # NIST Functions
     std_string nist(int) except +
     std_string nist(char *) except +
